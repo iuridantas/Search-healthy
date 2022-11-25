@@ -43,7 +43,7 @@ export class UserService {
   async getUserById(userId: string): Promise<IUserEntity> {
     const existUser = this.users.find((user) => user.id === userId);
     if (!existUser) {
-      throw new Error('usuario não encontrado');
+      throw new Error('Usuário não encontrado');
     }
     return existUser
   }

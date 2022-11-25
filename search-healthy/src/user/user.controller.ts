@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { IUserEntity } from './entities/user.entity';
 import { PartialUserDto } from './service/dto/partialUserInput.dto';
 import { UserDto } from './service/DTO/userInput.dto';
@@ -11,6 +11,15 @@ export class UserController {
   @Get()
   async getALLUser(): Promise<IUserEntity[]> {
     return await this.service.getAllUsers();
+  }
+
+  @Get(':id')
+  async getUserById(@Param('id') userId: string): Promise<IUserEntity> {
+    try {
+      return await this.service.getUserById(userId);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   @Post()
@@ -28,6 +37,20 @@ export class UserController {
   async uptadeUser(@Body() userData: PartialUserDto): Promise<IUserEntity> {
     try {
       return await this.service.updateUser(userData);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  @Delete(':id')
+  async deleteUserById(@Param('id') userId: string): Promise<string> {
+    try {
+      const userIsDeleted = await this.service.deleteUserById(userId);
+      if (userIsDeleted) {
+        return 'Usuário excluído com sucesso';
+      } else {
+        return 'Usuário não encontrado';
+      }
     } catch (err) {
       console.log(err);
     }
