@@ -2,49 +2,43 @@ import { IUserEntity } from '../entities/user.entity';
 import { UserDto } from './dto/userInput.dto';
 import { randomUUID } from 'node:crypto';
 import { PartialUserDto } from './dto/partialUserInput.dto';
+import { UserRepository } from '../user.repository';
+import { Injectable } from '@nestjs/common';
 
+@Injectable()
 export class UserService {
-  private users: IUserEntity[] = [];
+  constructor(private readonly userRepository: UserRepository) {}
 
   async createUser(user: UserDto): Promise<IUserEntity> {
     const userEntity = { ...user, id: randomUUID() };
-    this.users.push(userEntity);
-    return userEntity;
+    if(user.password.length <= 7){
+      throw new Error('Sua senha deve conter 8 digitos ou mais')
+    }
+    const createdUser = await this.userRepository.createUser(userEntity);
+    return createdUser;
   }
 
   async updateUser(userData: PartialUserDto): Promise<IUserEntity> {
-    this.users.map((user, index) => {
-      if (user.id === userData.id) {
-        const UpdatedUser = Object.assign(user, userData);
-        this.users.splice(index, 1, UpdatedUser);
-      }
-    });
-    const updatedUser = this.users.find((user) => user.id === userData.id);
+    const updatedUser = await this.userRepository.updateUser(userData);
     return updatedUser;
   }
 
   async getAllUsers(): Promise<IUserEntity[]> {
-    return this.users;
+    return await this.userRepository.findAllUsers();
   }
 
   async deleteUserById(userId: string): Promise<boolean> {
-    const existUser = this.users.find((user) => user.id === userId);
-    if (!existUser) {
+    try {
+      await this.userRepository.deleteUser(userId);
+      return true;
+    } catch (err) {
+      console.log(err);
       return false;
     }
-    this.users.map((user, index) => {
-      if (user.id === userId) {
-        this.users.splice(index, 1);
-      }
-    });
-    return true;
   }
 
   async getUserById(userId: string): Promise<IUserEntity> {
-    const existUser = this.users.find((user) => user.id === userId);
-    if (!existUser) {
-      throw new Error('Usuário não encontrado');
-    }
-    return existUser
+    const foundUser = await this.userRepository.findUserById(userId);
+    return foundUser;
   }
 }
