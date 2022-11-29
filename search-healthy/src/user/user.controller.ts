@@ -26,7 +26,7 @@ export class UserController {
     return await this.service.getAllUsers();
   }
 
-  @Get(':id')
+  @Get('/find/:id')
   async getUserById(@Param('id') userId: string): Promise<IUserEntity> {
     try {
       return await this.service.getUserById(userId);
@@ -35,7 +35,7 @@ export class UserController {
     }
   }
 
-  @Post()
+  @Post('/create')
   async createUser(
     @Body() { cpf, email, password, name, role }: UserDto,
     @Res() response: Response,
@@ -55,7 +55,7 @@ export class UserController {
     }
   }
 
-  @Patch()
+  @Patch('/update')
   async uptadeUser(@Body() userData: PartialUserDto): Promise<IUserEntity> {
     try {
       return await this.service.updateUser(userData);
@@ -64,7 +64,7 @@ export class UserController {
     }
   }
 
-  @Delete(':id')
+  @Delete('delete/:id')
   async deleteUserById(@Param('id') userId: string): Promise<string> {
     const userIsDeleted = await this.service.deleteUserById(userId);
     if (userIsDeleted) {
