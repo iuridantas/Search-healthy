@@ -42,7 +42,7 @@ export class UserRepository {
     } catch (err) {
       throw new Exception(
         Exceptions.DatabaseException,
-        'User not found in database',
+        'Usuário não encontrado',
       );
     }
   }
