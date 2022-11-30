@@ -15,6 +15,7 @@ import { PartialUserDto } from './service/dto/partialUserInput.dto';
 import { UserDto } from './service/DTO/userInput.dto';
 import { UserService } from './service/user.service';
 import { Response } from 'express';
+import { HandleException } from 'src/utils/exceptions/exceptionsHelper';
 
 @ApiTags('Users')
 @Controller('User')
@@ -31,7 +32,7 @@ export class UserController {
     try {
       return await this.service.getUserById(userId);
     } catch (err) {
-      console.log(err);
+      HandleException(err);
     }
   }
 
@@ -50,7 +51,7 @@ export class UserController {
       });
       response.status(201).send(result);
     } catch (err) {
-      console.log(err);
+      HandleException(err);
       throw new BadRequestException(err.message);
     }
   }
@@ -60,7 +61,7 @@ export class UserController {
     try {
       return await this.service.updateUser(userData);
     } catch (err) {
-      console.log(err);
+      HandleException(err);
     }
   }
 

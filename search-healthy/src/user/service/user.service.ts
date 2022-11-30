@@ -4,6 +4,8 @@ import { randomUUID } from 'node:crypto';
 import { PartialUserDto } from './dto/partialUserInput.dto';
 import { UserRepository } from '../user.repository';
 import { Injectable } from '@nestjs/common';
+import { Exception } from 'src/utils/exceptions/exception';
+import { Exceptions } from 'src/utils/exceptions/exceptionsHelper';
 
 @Injectable()
 export class UserService {
@@ -12,7 +14,10 @@ export class UserService {
   async createUser(user: UserDto): Promise<IUserEntity> {
     const userEntity = { ...user, id: randomUUID() };
     if(user.password.length <= 7){
-      throw new Error('Sua senha deve conter 8 digitos ou mais')
+      throw new Exception(
+        Exceptions.InvalidData,
+        'Sua senha deve conter 8 digitos ou mais',
+      );
     }
     const createdUser = await this.userRepository.createUser(userEntity);
     return createdUser;
