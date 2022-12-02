@@ -19,7 +19,7 @@ export class DiceController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.diceService.findOne(+id);
+    return this.diceService.findOne(id);
   }
 
   @Patch(':id')

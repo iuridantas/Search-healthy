@@ -1,26 +1,37 @@
 import { Injectable } from '@nestjs/common';
+import { randomUUID } from 'node:crypto';
+import { DiceService } from 'src/dice/dice.service';
 import { CreateTrainingDto } from './dto/create-training.dto';
 import { UpdateTrainingDto } from './dto/update-training.dto';
+import { Training } from './entities/training.entity';
 
 @Injectable()
 export class TrainingService {
-  create(createTrainingDto: CreateTrainingDto) {
-    return 'This action adds a new training';
+  private _training: Training[] = [];
+  constructor(private readonly diceService: DiceService) {}
+  async create(createTrainingDto: CreateTrainingDto): Promise<Training> {
+    await this.diceService.findOne(createTrainingDto.diceId);
+    const createdTraining: Training = {
+      ...createTrainingDto,
+      id: randomUUID(),
+    };
+    this._training.push(createdTraining);
+    return Promise.resolve(createdTraining);
   }
 
-  findAll() {
+  async findAll() {
     return `This action returns all training`;
   }
 
-  findOne(id: number) {
+  async findOne(id: string) {
     return `This action returns a #${id} training`;
   }
 
-  update(id: number, updateTrainingDto: UpdateTrainingDto) {
+  async update(id: number, updateTrainingDto: UpdateTrainingDto) {
     return `This action updates a #${id} training`;
   }
 
-  remove(id: number) {
+  async remove(id: number) {
     return `This action removes a #${id} training`;
   }
 }

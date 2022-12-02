@@ -4,23 +4,23 @@ import { UpdateDieDto } from './dto/update-die.dto';
 
 @Injectable()
 export class DiceService {
-  create(createDieDto: CreateDieDto) {
+  async create(createDieDto: CreateDieDto) {
     return 'This action adds a new die';
   }
 
-  findAll() {
+  async findAll() {
     return `This action returns all dice`;
   }
 
-  findOne(id: number) {
+  async findOne(id: string) {
     return `This action returns a #${id} die`;
   }
 
-  update(id: number, updateDieDto: UpdateDieDto) {
+  async update(id: number, updateDieDto: UpdateDieDto) {
     return `This action updates a #${id} die`;
   }
 
-  remove(id: number) {
+  async remove(id: number) {
     return `This action removes a #${id} die`;
   }
 }

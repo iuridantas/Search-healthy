@@ -19,7 +19,7 @@ export class TrainingController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.trainingService.findOne(+id);
+    return this.trainingService.findOne(id);
   }
 
   @Patch(':id')
