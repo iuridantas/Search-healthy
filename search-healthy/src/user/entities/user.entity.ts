@@ -1,4 +1,4 @@
-import { UserDto } from '../service/DTO/userInput.dto';
+import { UserDto } from '../DTO/userInput.dto';
 
 export interface IUserEntity extends UserDto {
   id: string;

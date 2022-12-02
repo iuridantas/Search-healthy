@@ -1,8 +1,8 @@
-import { IUserEntity } from '../entities/user.entity';
-import { UserDto } from './dto/userInput.dto';
+import { IUserEntity } from './entities/user.entity';
+import { UserDto } from './DTO/userInput.dto';
 import { randomUUID } from 'node:crypto';
-import { PartialUserDto } from './dto/partialUserInput.dto';
-import { UserRepository } from '../user.repository';
+import { PartialUserDto } from './DTO/partialUserInput.dto';
+import { UserRepository } from './user.repository';
 import { Injectable } from '@nestjs/common';
 import { Exception } from 'src/utils/exceptions/exception';
 import { Exceptions } from 'src/utils/exceptions/exceptionsHelper';
@@ -13,7 +13,7 @@ export class UserService {
 
   async createUser(user: UserDto): Promise<IUserEntity> {
     const userEntity = { ...user, id: randomUUID() };
-    if(user.password.length <= 7){
+    if (user.password.length <= 7) {
       throw new Exception(
         Exceptions.InvalidData,
         'Sua senha deve conter 8 digitos ou mais',
