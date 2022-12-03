@@ -4,7 +4,7 @@ import { IsString } from "class-validator";
 export class CreateTrainingDto {
   @ApiProperty()
   @IsString()
-  diceId: string;
+  profileId: string;
 
   @ApiProperty()
   @IsString()

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { randomUUID } from 'node:crypto';
-import { DiceService } from 'src/dice/dice.service';
+import { ProfileService } from 'src/profile/profile.service';
 import { CreateTrainingDto } from './dto/create-training.dto';
 import { UpdateTrainingDto } from './dto/update-training.dto';
 import { Training } from './entities/training.entity';
@@ -8,9 +8,9 @@ import { Training } from './entities/training.entity';
 @Injectable()
 export class TrainingService {
   private _training: Training[] = [];
-  constructor(private readonly diceService: DiceService) {}
+  constructor(private readonly profileService: ProfileService) {}
   async create(createTrainingDto: CreateTrainingDto): Promise<Training> {
-    await this.diceService.findOne(createTrainingDto.diceId);
+    await this.profileService.findOne(createTrainingDto.profileId);
     const createdTraining: Training = {
       ...createTrainingDto,
       id: randomUUID(),
