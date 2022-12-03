@@ -12,7 +12,7 @@ export class CreateTrainingDto {
 
   @ApiProperty()
   @IsString()
-  exercise: string;
+  exerciseId: string;
 
   @ApiProperty()
   @IsString()

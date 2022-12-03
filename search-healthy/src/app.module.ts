@@ -5,9 +5,10 @@ import { UserController } from './user/user.controller';
 import { UserRepository } from './user/user.repository';
 import { TrainingModule } from './training/training.module';
 import { ProfileModule } from './profile/profile.module';
+import { ExerciseModule } from './exercise/exercise.module';
 
 @Module({
-  imports: [DatabaseModule, TrainingModule, ProfileModule],
+  imports: [DatabaseModule, TrainingModule, ProfileModule, ExerciseModule],
   controllers: [UserController],
   providers: [UserService, UserRepository],
 })
