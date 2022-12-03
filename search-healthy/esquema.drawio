@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="m1aBNfaLXZ6IVHRmzDTM" name="Página-1">
-        <mxGraphModel dx="645" dy="597" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="253" dy="284" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -26,8 +26,8 @@
                         <mxPoint x="630" y="750" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="42" value="TRAINING&lt;br&gt;&lt;br&gt;PROFILEID&lt;br&gt;DAY&lt;br&gt;EXERCISEID&lt;br&gt;REPETITION&lt;br&gt;AEROBIC&lt;br&gt;STRETCHING" style="rounded=0;whiteSpace=wrap;html=1;fillColor=default;verticalAlign=top;" parent="1" vertex="1">
-                    <mxGeometry x="440" y="620" width="120" height="130" as="geometry"/>
+                <mxCell id="42" value="TRAINING&lt;br&gt;&lt;br&gt;ID&lt;br&gt;PROFILEID&lt;br&gt;DAY&lt;br&gt;EXERCISEID&lt;br&gt;REPETITION&lt;br&gt;AEROBIC&lt;br&gt;STRETCHING" style="rounded=0;whiteSpace=wrap;html=1;fillColor=default;verticalAlign=top;" parent="1" vertex="1">
+                    <mxGeometry x="440" y="620" width="120" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="47" value="N:1" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
                     <mxGeometry x="160" y="610" width="30" height="20" as="geometry"/>
@@ -38,8 +38,8 @@
                 <mxCell id="50" value="N:1" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
                     <mxGeometry x="400" y="660" width="30" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="52" value="EXERCISE&lt;br&gt;&lt;br&gt;ID&lt;br&gt;NAME&lt;br&gt;MUSCULAR GROUP" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="640" y="680" width="140" height="82.5" as="geometry"/>
+                <mxCell id="52" value="EXERCISE&lt;br&gt;&lt;br&gt;ID&lt;br&gt;TRAININGID&lt;br&gt;MUSCULAR GROUP&lt;br&gt;EXERCISES" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="640" y="680" width="140" height="100" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
