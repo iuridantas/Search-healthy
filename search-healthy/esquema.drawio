@@ -1,12 +1,9 @@
 <mxfile host="65bd71144e">
     <diagram id="m1aBNfaLXZ6IVHRmzDTM" name="Página-1">
-        <mxGraphModel dx="267" dy="597" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="645" dy="597" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="38" value="N:1" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="250" y="430" width="30" height="20" as="geometry"/>
-                </mxCell>
                 <mxCell id="44" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.334;exitDx=0;exitDy=0;entryX=-0.019;entryY=0.79;entryDx=0;entryDy=0;entryPerimeter=0;exitPerimeter=0;" parent="1" source="40" target="41" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
@@ -21,10 +18,15 @@
                         <mxPoint x="360" y="610" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="41" value="DICE&lt;br&gt;&lt;br&gt;ID&lt;br&gt;NAME&lt;br&gt;IMAGE&lt;br&gt;TALL&lt;br&gt;WEIGTH&lt;br&gt;OBJECTIVE&lt;br&gt;GYM&lt;br&gt;SERVICES&lt;br&gt;TEACHER&lt;br&gt;STUDENT" style="rounded=0;whiteSpace=wrap;html=1;fillColor=default;verticalAlign=top;" parent="1" vertex="1">
+                <mxCell id="41" value="PROFILE&lt;br&gt;&lt;br&gt;ID&lt;br&gt;NAME&lt;br&gt;IMAGE&lt;br&gt;TALL&lt;br&gt;WEIGTH&lt;br&gt;OBJECTIVE&lt;br&gt;GYM&lt;br&gt;SERVICES&lt;br&gt;TEACHER&lt;br&gt;STUDENT" style="rounded=0;whiteSpace=wrap;html=1;fillColor=default;verticalAlign=top;" parent="1" vertex="1">
                     <mxGeometry x="200" y="480" width="160" height="200" as="geometry"/>
                 </mxCell>
-                <mxCell id="42" value="TRAINING&lt;br&gt;&lt;br&gt;DICEID&lt;br&gt;DAY&lt;br&gt;EXERCISE&lt;br&gt;REPETITION&lt;br&gt;AEROBIC&lt;br&gt;STRETCHING" style="rounded=0;whiteSpace=wrap;html=1;fillColor=default;verticalAlign=top;" parent="1" vertex="1">
+                <mxCell id="51" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="42" target="52" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="630" y="750" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="42" value="TRAINING&lt;br&gt;&lt;br&gt;PROFILEID&lt;br&gt;DAY&lt;br&gt;EXERCISEID&lt;br&gt;REPETITION&lt;br&gt;AEROBIC&lt;br&gt;STRETCHING" style="rounded=0;whiteSpace=wrap;html=1;fillColor=default;verticalAlign=top;" parent="1" vertex="1">
                     <mxGeometry x="440" y="620" width="120" height="130" as="geometry"/>
                 </mxCell>
                 <mxCell id="47" value="N:1" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
@@ -35,6 +37,9 @@
                 </mxCell>
                 <mxCell id="50" value="N:1" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
                     <mxGeometry x="400" y="660" width="30" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="52" value="EXERCISE&lt;br&gt;&lt;br&gt;ID&lt;br&gt;NAME&lt;br&gt;MUSCULAR GROUP" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="640" y="680" width="140" height="82.5" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
