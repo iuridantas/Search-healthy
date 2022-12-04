@@ -11,8 +11,7 @@ export class CreateTrainingDto {
   day: Date;
 
   @ApiProperty()
-  @IsString()
-  exerciseId: string;
+  exercises: [];
 
   @ApiProperty()
   @IsString()
