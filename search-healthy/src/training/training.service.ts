@@ -20,18 +20,35 @@ export class TrainingService {
   }
 
   async findAll() {
-    return `This action returns all training`;
+    return this._training;
   }
 
-  async findOne(id: string) {
-    return `This action returns a #${id} training`;
+  async findOne(id: string): Promise<Training> {
+    const findedTraining = this._training.find(
+      (training) => training.id === id,
+    );
+    return findedTraining;
   }
 
-  async update(id: number, updateTrainingDto: UpdateTrainingDto) {
-    return `This action updates a #${id} training`;
+  async update(
+    id: string,
+    updateTrainingDto: UpdateTrainingDto,
+  ): Promise<Training> {
+    this._training.map((training, index) => {
+      if (training.id === id) {
+        const updateTrainig = Object.assign(training, UpdateTrainingDto);
+        this._training.splice(index, 1, updateTrainig);
+      }
+    });
+    return await this.findOne(id);
   }
 
-  async remove(id: number) {
-    return `This action removes a #${id} training`;
+  async remove(id: string): Promise<string> {
+    this._training.map((training, index) => {
+      if (training.id === id) {
+        this._training.splice(index, 1);
+      }
+    });
+    return Promise.resolve('treino deletado com sucesso');
   }
 }
