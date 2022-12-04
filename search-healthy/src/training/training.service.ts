@@ -19,7 +19,7 @@ export class TrainingService {
     return Promise.resolve(createdTraining);
   }
 
-  async findAll() {
+  async findAll(): Promise<Training[]> {
     return this._training;
   }
 
@@ -36,8 +36,8 @@ export class TrainingService {
   ): Promise<Training> {
     this._training.map((training, index) => {
       if (training.id === id) {
-        const updateTrainig = Object.assign(training, UpdateTrainingDto);
-        this._training.splice(index, 1, updateTrainig);
+        const updatedTrainig = Object.assign(training, updateTrainingDto);
+        this._training.splice(index, 1, updatedTrainig);
       }
     });
     return await this.findOne(id);
