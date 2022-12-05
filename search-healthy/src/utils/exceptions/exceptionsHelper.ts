@@ -12,7 +12,7 @@ export enum Exceptions {
   UnauthorizedException,
 }
 
-export function HandleException({ message, exception }: Exception) {
+export function HandleException({exception, message}: Exception) {
   if (
     exception === Exceptions.InvalidData ||
     exception === Exceptions.NotFoundData
