@@ -19,10 +19,10 @@ model User {
   role             String
   createdAt        DateTime @default(now())
   updatesAt        DateTime @updatedAt
-  ProfileStudent   Profile  @relation(fields: [profileStudentId], references: [id], name: "classroom student")
-  profileStudentId String
-  ProfileTeacher   Profile  @relation(fields: [profileTeacherId], references: [id])
-  profileTeacherId String
+  ProfileStudent   Profile?  @relation(fields: [profileStudentId], references: [id], name: "classroom student")
+  profileStudentId String?
+  ProfileTeacher   Profile?  @relation(fields: [profileTeacherId], references: [id])
+  profileTeacherId String?
 }
 
 model Training {
