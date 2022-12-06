@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString } from "class-validator";
+import { IsArray, IsString } from "class-validator";
 
 export class CreateTrainingDto {
   @ApiProperty()
@@ -11,6 +11,7 @@ export class CreateTrainingDto {
   day: Date;
 
   @ApiProperty()
+  @IsArray()
   exercises: [];
 
   @ApiProperty()

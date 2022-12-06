@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString } from "class-validator";
+import { IsNumber, IsString } from "class-validator";
 
 export class CreateProfileDto {
     @ApiProperty()
@@ -11,9 +11,11 @@ export class CreateProfileDto {
     image: string;
 
     @ApiProperty()
+    @IsNumber()
     tall: number;
 
     @ApiProperty()
+    @IsNumber()
     weigth: number;
     
     @ApiProperty()
