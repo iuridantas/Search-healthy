@@ -12,7 +12,7 @@ export class CreateTrainingDto {
 
   @ApiProperty()
   @IsArray()
-  exercises: [];
+  exercises:string[];
 
   @ApiProperty()
   @IsString()

@@ -10,6 +10,6 @@ export class TrainingRepository {
     const CreatedTraining = await this.prisma.training.create({
       data: training,
     });
-    return CreatedTraining;
+    return CreatedTraining
   }
 }
