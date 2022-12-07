@@ -13,13 +13,18 @@ export class ProfileRepository {
     students: true,
     teachers: true,
   };
-
+  
   constructor(private readonly prisma: PrismaService) {}
 
-  async createProfile(
-    { name, image, tall, weigth, objective, gym, services }: CreateProfileDto,
-    id: string,
-  ): Promise<Profile> {
+  async createProfile({
+    name,
+    image,
+    tall,
+    weigth,
+    objective,
+    gym,
+    services,
+  }:  CreateProfileDto, id: string,): Promise<Profile> {
     try {
       return await this.prisma.profile.create({
         data: {
