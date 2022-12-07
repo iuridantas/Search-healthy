@@ -29,4 +29,10 @@ export class CreateProfileDto {
     @ApiProperty()
     @IsString()
     services: string;
+
+    @ApiProperty()
+    teachersIds?: string[];
+    
+    @ApiProperty()
+    studentsIds?: string[];
 }

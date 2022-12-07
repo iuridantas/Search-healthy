@@ -1,12 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { randomUUID } from 'node:crypto';
+import { Exception } from 'src/utils/exceptions/exception';
+import { Exceptions } from 'src/utils/exceptions/exceptionsHelper';
 import { CreateProfileDto } from './dto/create-profile.dto';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 import { Profile } from './entities/profile.entity';
+import { ProfileRepository } from './profile.repository';
 
 @Injectable()
 export class ProfileService {
-  private _profile: Profile[] = [];
+  constructor(private readonly profileRepository: ProfileRepository) {}
+
   async create(createProfileDto: CreateProfileDto): Promise<Profile> {
     const createdProfile: Profile = {
       ...createProfileDto,
@@ -14,37 +18,29 @@ export class ProfileService {
       teachers: [],
       students: [],
     };
-    this._profile.push(createdProfile);
-    return createdProfile;
+    return await this.profileRepository.createProfile(createdProfile);
   }
 
   async findAll(): Promise<Profile[]> {
-    return this._profile;
+    return await this.profileRepository.findAllProfiles();
   }
 
   async findOne(id: string): Promise<Profile> {
-    return this._profile.find((profile) => profile.id === id);
+    return await this.profileRepository.findProfileById(id);
   }
 
-  async update(
-    id: string,
-    updateProfileDto: UpdateProfileDto,
-  ): Promise<Profile> {
-    this._profile.map((profile, index) => {
-      if (profile.id === id) {
-        const uptadedProfile = Object.assign(profile, updateProfileDto);
-        this._profile.splice(index, 1, uptadedProfile);
-      }
-    });
-    return await this.findOne(id);
+  async update(updateProfileDto: UpdateProfileDto): Promise<Profile> {
+    if (!updateProfileDto.studentsIds && !updateProfileDto.teachersIds) {
+      throw new Exception(
+        Exceptions.InvalidData,
+        'Não tá enviando a referencia pra conexão',
+      );
   }
+  return await this.profileRepository.updateProfile(updateProfileDto);
+}
 
   async remove(id: string): Promise<string> {
-    this._profile.map((profile, index) => {
-      if (profile.id === id) {
-        this._profile.splice(index, 1);
-      }
-    });
-    return Promise.resolve('perfil deletado com sucesso');
+    await this.profileRepository.deleteProfile(id);
+    return 'Perfil excluido com sucesso';
   }
 }
