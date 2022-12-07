@@ -13,7 +13,7 @@ export class TrainingRepository {
     });
   }
 
-  async updateTrainingr(training: UpdateTrainingDto): Promise<Training> {
+  async updateTraining(training: UpdateTrainingDto): Promise<Training> {
     return await this.prisma.training.update({
       where: { id: training.id },
       data: training,

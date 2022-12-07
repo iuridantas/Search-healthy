@@ -25,12 +25,7 @@ export class TrainingController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateTrainingDto: UpdateTrainingDto) {
-    return this.trainingService.update(id, updateTrainingDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.trainingService.remove(id);
+  update(@Body() updateTrainingDto: UpdateTrainingDto) {
+    return this.trainingService.update(updateTrainingDto);
   }
 }
