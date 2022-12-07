@@ -6,7 +6,6 @@ import { UserRepository } from './user/user.repository';
 import { TrainingModule } from './training/training.module';
 import { ProfileModule } from './profile/profile.module';
 
-
 @Module({
   imports: [DatabaseModule, TrainingModule, ProfileModule],
   controllers: [UserController],

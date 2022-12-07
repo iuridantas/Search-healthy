@@ -11,23 +11,23 @@ export class TrainingRepository {
 
   async createTraining(training: Training): Promise<Training> {
     try {
-    return await this.prisma.training.create({
-      data: training,
-    });
-  } catch (err) {
-    throw new Exception(Exceptions.DatabaseException);
-  }
+      return await this.prisma.training.create({
+        data: training,
+      });
+    } catch (err) {
+      throw new Exception(Exceptions.DatabaseException);
+    }
   }
 
   async updateTraining(training: UpdateTrainingDto): Promise<Training> {
     try {
-    return await this.prisma.training.update({
-      where: { id: training.id },
-      data: training,
-    });
-  } catch (err) {
-    throw new Exception(Exceptions.DatabaseException);
-  }
+      return await this.prisma.training.update({
+        where: { id: training.id },
+        data: training,
+      });
+    } catch (err) {
+      throw new Exception(Exceptions.DatabaseException);
+    }
   }
 
   async findAllTrainings(): Promise<Training[]> {

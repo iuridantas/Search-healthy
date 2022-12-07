@@ -45,7 +45,7 @@ export class ProfileController {
     }
   }
 
-  @Patch('/update/:id')
+  @Patch('/update')
   async update(@Body() updateProfileDto: UpdateProfileDto) {
     try {
       return this.profileService.update(updateProfileDto);

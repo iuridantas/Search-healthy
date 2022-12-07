@@ -1,5 +1,5 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { IsArray, IsString } from "class-validator";
+import { ApiProperty } from '@nestjs/swagger';
+import { IsArray, IsString } from 'class-validator';
 
 export class CreateTrainingDto {
   @ApiProperty()
@@ -12,7 +12,7 @@ export class CreateTrainingDto {
 
   @ApiProperty()
   @IsArray()
-  exercises:string[];
+  exercises: string[];
 
   @ApiProperty()
   @IsString()

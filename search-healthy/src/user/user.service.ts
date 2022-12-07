@@ -19,13 +19,11 @@ export class UserService {
         'Sua senha deve conter 8 digitos ou mais',
       );
     }
-    const createdUser = await this.userRepository.createUser(userEntity);
-    return createdUser;
+    return await this.userRepository.createUser(userEntity);
   }
 
   async updateUser(userData: PartialUserDto): Promise<IUserEntity> {
-    const updatedUser = await this.userRepository.updateUser(userData);
-    return updatedUser;
+    return await this.userRepository.updateUser(userData);
   }
 
   async getAllUsers(): Promise<IUserEntity[]> {
@@ -43,7 +41,6 @@ export class UserService {
   }
 
   async getUserById(userId: string): Promise<IUserEntity> {
-    const foundUser = await this.userRepository.findUserById(userId);
-    return foundUser;
+    return await this.userRepository.findUserById(userId);
   }
 }

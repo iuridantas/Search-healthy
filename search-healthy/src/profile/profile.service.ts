@@ -12,13 +12,8 @@ export class ProfileService {
   constructor(private readonly profileRepository: ProfileRepository) {}
 
   async create(createProfileDto: CreateProfileDto): Promise<Profile> {
-    const createdProfile: Profile = {
-      ...createProfileDto,
-      id: randomUUID(),
-      teachers: [],
-      students: [],
-    };
-    return await this.profileRepository.createProfile(createdProfile);
+    const id = randomUUID();
+    return await this.profileRepository.createProfile(createProfileDto, id);
   }
 
   async findAll(): Promise<Profile[]> {
@@ -35,9 +30,9 @@ export class ProfileService {
         Exceptions.InvalidData,
         'Não tá enviando a referencia pra conexão',
       );
+    }
+    return await this.profileRepository.updateProfile(updateProfileDto);
   }
-  return await this.profileRepository.updateProfile(updateProfileDto);
-}
 
   async remove(id: string): Promise<string> {
     await this.profileRepository.deleteProfile(id);

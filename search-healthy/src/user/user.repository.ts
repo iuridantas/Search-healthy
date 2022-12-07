@@ -11,8 +11,7 @@ export class UserRepository {
 
   async createUser(user: IUserEntity): Promise<IUserEntity> {
     try {
-      const CreatedUser = await this.prisma.user.create({ data: user });
-      return CreatedUser;
+      return await this.prisma.user.create({ data: user });
     } catch (err) {
       throw new Exception(
         Exceptions.DatabaseException,
@@ -23,11 +22,10 @@ export class UserRepository {
 
   async updateUser(user: PartialUserDto): Promise<IUserEntity> {
     try {
-      const UpdatedUser = await this.prisma.user.update({
+      return await this.prisma.user.update({
         where: { id: user.id },
         data: user,
       });
-      return UpdatedUser;
     } catch (err) {
       throw new Exception(Exceptions.DatabaseException);
     }
@@ -35,10 +33,9 @@ export class UserRepository {
 
   async deleteUser(id: string): Promise<IUserEntity> {
     try {
-      const deletedUser = await this.prisma.user.delete({
+      return await this.prisma.user.delete({
         where: { id: id },
       });
-      return deletedUser;
     } catch (err) {
       throw new Exception(
         Exceptions.DatabaseException,
@@ -49,8 +46,7 @@ export class UserRepository {
 
   async findAllUsers(): Promise<IUserEntity[]> {
     try {
-      const allUsers = await this.prisma.user.findMany();
-      return allUsers;
+      return await this.prisma.user.findMany();
     } catch (err) {
       throw new Exception(Exceptions.DatabaseException);
     }
@@ -58,10 +54,9 @@ export class UserRepository {
 
   async findUserById(id: string): Promise<IUserEntity> {
     try {
-      const foundUser = await this.prisma.user.findUniqueOrThrow({
+      return await this.prisma.user.findUniqueOrThrow({
         where: { id: id },
       });
-      return foundUser;
     } catch (err) {
       throw new Exception(Exceptions.DatabaseException);
     }

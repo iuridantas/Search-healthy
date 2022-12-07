@@ -3,6 +3,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import { TrainingController } from 'src/training/training.controller';
 import { Exception } from 'src/utils/exceptions/exception';
 import { Exceptions } from 'src/utils/exceptions/exceptionsHelper';
+import { CreateProfileDto } from './dto/create-profile.dto';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 import { Profile } from './entities/profile.entity';
 
@@ -12,18 +13,13 @@ export class ProfileRepository {
     students: true,
     teachers: true,
   };
+
   constructor(private readonly prisma: PrismaService) {}
 
-  async createProfile({
-    id,
-    name,
-    image,
-    tall,
-    weigth,
-    objective,
-    gym,
-    services,
-  }: Profile): Promise<Profile> {
+  async createProfile(
+    { name, image, tall, weigth, objective, gym, services }: CreateProfileDto,
+    id: string,
+  ): Promise<Profile> {
     try {
       return await this.prisma.profile.create({
         data: {

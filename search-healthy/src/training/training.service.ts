@@ -12,7 +12,7 @@ export class TrainingService {
     private readonly profileService: ProfileService,
     private readonly trainingRepository: TrainingRepository,
   ) {}
-  
+
   async create(createTrainingDto: CreateTrainingDto): Promise<Training> {
     await this.profileService.findOne(createTrainingDto.profileId);
     const createdTraining: Training = {
@@ -23,14 +23,14 @@ export class TrainingService {
   }
 
   async findAll(): Promise<Training[]> {
-      return await this.trainingRepository.findAllTrainings();
+    return await this.trainingRepository.findAllTrainings();
   }
 
   async findOne(id: string): Promise<Training> {
-      return await this.trainingRepository.findTrainingById(id);
+    return await this.trainingRepository.findTrainingById(id);
   }
 
   async update(updateTrainingDto: UpdateTrainingDto): Promise<Training> {
-      return await this.trainingRepository.updateTraining(updateTrainingDto);
+    return await this.trainingRepository.updateTraining(updateTrainingDto);
   }
 }
