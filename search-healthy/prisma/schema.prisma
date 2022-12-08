@@ -12,6 +12,7 @@ datasource db {
 
 model User {
   id               String   @id @unique
+  geralId          Int      @unique @default(autoincrement())
   name             String
   email            String   @unique
   password         String
@@ -28,7 +29,7 @@ model User {
 model Training {
   id         String   @id @unique
   profileId  String
-  Profile    Profile  @relation(fields: [profileId], references: [id])
+  Profile    Profile  @relation(fields: [profileId], references: [id], onDelete: Cascade)
   day        DateTime
   exercises  String[]
   repetition String
@@ -46,6 +47,6 @@ model Profile {
   weigth    Float
   objective String
   gym       String
-  services  String
+  services  String[]
   Training  Training[]
 }

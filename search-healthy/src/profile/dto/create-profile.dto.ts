@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNumber, IsString } from 'class-validator';
+import { IsArray, IsNumber, IsString } from 'class-validator';
 
 export class CreateProfileDto {
   @ApiProperty()
@@ -27,8 +27,8 @@ export class CreateProfileDto {
   gym: string;
 
   @ApiProperty()
-  @IsString()
-  services: string;
+  @IsArray()
+  services: string[];
 
   @ApiProperty()
   teachersIds?: string[];
