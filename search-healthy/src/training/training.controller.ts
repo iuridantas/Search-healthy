@@ -5,7 +5,6 @@ import {
   Body,
   Patch,
   Param,
-  Delete,
 } from '@nestjs/common';
 import { TrainingService } from './training.service';
 import { CreateTrainingDto } from './dto/create-training.dto';
@@ -19,7 +18,7 @@ export class TrainingController {
   constructor(private readonly trainingService: TrainingService) {}
 
   @Post('/create')
-  create(@Body() createTrainingDto: CreateTrainingDto) {
+  async create(@Body() createTrainingDto: CreateTrainingDto) {
     try {
       return this.trainingService.create(createTrainingDto);
     } catch (err) {
@@ -37,7 +36,7 @@ export class TrainingController {
   }
 
   @Get('/find/:id')
-  findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string) {
     try {
       return this.trainingService.findOne(id);
     } catch (err) {
@@ -46,7 +45,7 @@ export class TrainingController {
   }
 
   @Patch('/update/:id')
-  update(@Body() updateTrainingDto: UpdateTrainingDto) {
+  async update(@Body() updateTrainingDto: UpdateTrainingDto) {
     try {
       return this.trainingService.update(updateTrainingDto);
     } catch (err) {

@@ -12,7 +12,6 @@ async function bootstrap() {
     .setTitle('Search Healthy')
     .setDescription('Encontre uma academia para melhorar a sua saúde.')
     .setVersion('1.0')
-    .addTag('Users')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

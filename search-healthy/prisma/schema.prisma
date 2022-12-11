@@ -20,9 +20,9 @@ model User {
   role             String
   createdAt        DateTime @default(now())
   updatesAt        DateTime @updatedAt
-  ProfileStudent   Profile? @relation(fields: [profileStudentId], references: [id], name: "classroom student")
+  ProfileStudent   Profile? @relation(fields: [profileStudentId], references: [id], name: "classroom student", onDelete: Cascade)
   profileStudentId String?
-  ProfileTeacher   Profile? @relation(fields: [profileTeacherId], references: [id])
+  ProfileTeacher   Profile? @relation(fields: [profileTeacherId], references: [id], onDelete: Cascade)
   profileTeacherId String?
 }
 
