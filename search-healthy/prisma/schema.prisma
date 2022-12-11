@@ -1,5 +1,9 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
+generator erd {
+    provider = "prisma-erd-generator"
+    output   = "../db.png"
+}
 
 generator client {
   provider = "prisma-client-js"
@@ -20,7 +24,7 @@ model User {
   role             String
   createdAt        DateTime @default(now())
   updatesAt        DateTime @updatedAt
-  ProfileStudent   Profile? @relation(fields: [profileStudentId], references: [id], name: "classroom student", onDelete: Cascade)
+  ProfileStudent   Profile? @relation(fields: [profileStudentId], references: [id], name: "profile student", onDelete: Cascade)
   profileStudentId String?
   ProfileTeacher   Profile? @relation(fields: [profileTeacherId], references: [id], onDelete: Cascade)
   profileTeacherId String?
@@ -40,7 +44,7 @@ model Training {
 model Profile {
   id        String     @id @unique
   teachers  User[]
-  students  User[]     @relation(name: "classroom student")
+  students  User[]     @relation(name: "profile student")
   name      String
   image     String
   tall      Float

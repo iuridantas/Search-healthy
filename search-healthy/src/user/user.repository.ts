@@ -61,4 +61,30 @@ export class UserRepository {
       throw new Exception(Exceptions.DatabaseException);
     }
   }
+
+  async findUserByEmail(email: string): Promise<IUserEntity> {
+    try {
+      return await this.prisma.user.findUniqueOrThrow({
+        where: { email: email },
+      });
+    } catch (err) {
+      throw new Exception(
+        Exceptions.DatabaseException,
+        'usuário não encontrado com este e-mail',
+      );
+    }
+  }
+
+  async findUserByCpf(cpf: string): Promise<IUserEntity> {
+    try {
+      return await this.prisma.user.findUniqueOrThrow({
+        where: { cpf: cpf },
+      });
+    } catch (err) {
+      throw new Exception(
+        Exceptions.DatabaseException,
+        'usuário não encontrado com este CPF',
+      );
+    }
+  }
 }

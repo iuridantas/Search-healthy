@@ -53,4 +53,12 @@ export class UserService {
     delete foundUser.password;
     return foundUser;
   }
+
+  async findUserByEmail(email: string): Promise<IUserEntity> {
+    return await this.userRepository.findUserByEmail(email);
+  }
+
+  async findUserByCpf(cpf: string): Promise<IUserEntity> {
+    return await this.userRepository.findUserByCpf(cpf);
+  }
 }
