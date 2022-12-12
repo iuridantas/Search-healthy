@@ -13,11 +13,7 @@ export class AuthStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  async validateUser(payload: any) {
+  async validate(payload: any) {
     return await this.authService.getUserEmail(payload.email);
-  }
-
-  async validateCpf(payload: any) {
-    return await this.authService.getUserCpf(payload.cpf);
   }
 }

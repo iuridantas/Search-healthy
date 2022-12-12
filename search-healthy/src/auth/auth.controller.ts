@@ -7,7 +7,6 @@ import { HandleException } from 'src/utils/exceptions/exceptionsHelper';
 import { AuthService } from './auth.service';
 import { IsPersonalAuthorization } from './decorators/is-personal.decorator';
 import { userLogged } from './decorators/user-logged.decorator';
-import { CreateAuthCpfDto } from './dto/create-auth.cpf.dto';
 import { CreateAuthEmailDto } from './dto/create-auth.email.dto';
 
 @ApiTags('Authorization')
@@ -18,16 +17,7 @@ export class AuthController {
   @Post('/login/email')
   async loginEmail(@Body() data: CreateAuthEmailDto) {
     try {
-    return this.authService.validateUserEmail(data);
-  } catch (error) {
-    HandleException(error);
-  }
-  }
-
-  @Post('/login/cpf')
-  async loginCpf(@Body() data: CreateAuthCpfDto) {
-    try {
-    return this.authService.validateUserCpf(data);
+    return this.authService.validateUser(data);
   } catch (error) {
     HandleException(error);
   }

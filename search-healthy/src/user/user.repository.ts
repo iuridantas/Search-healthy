@@ -74,17 +74,4 @@ export class UserRepository {
       );
     }
   }
-
-  async findUserByCpf(cpf: string): Promise<IUserEntity> {
-    try {
-      return await this.prisma.user.findUniqueOrThrow({
-        where: { cpf: cpf },
-      });
-    } catch (err) {
-      throw new Exception(
-        Exceptions.DatabaseException,
-        'usuário não encontrado com este CPF',
-      );
-    }
-  }
 }
