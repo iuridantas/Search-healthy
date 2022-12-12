@@ -1,33 +1,34 @@
-import { Body, Controller, Get, Post} from '@nestjs/common';
-import { Request, UseGuards } from '@nestjs/common/decorators';
+import { Body, Controller, Get, Post } from '@nestjs/common';
+import { UseGuards } from '@nestjs/common/decorators';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { IUserEntity } from 'src/user/entities/user.entity';
+
 import { AuthService } from './auth.service';
 import { IsPersonalAuthorization } from './decorators/is-personal.decorator';
+import { userLogged } from './decorators/user-logged.decorator';
 import { CreateAuthDto } from './dto/create-auth.dto';
-
 
 @ApiTags('Authorization')
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Post("Login/Email")
+  @Post('/login')
   async loginEmail(@Body() data: CreateAuthDto) {
-    return this.authService.validateUserEmail(data)
+    console.log('chegou')
+    return this.authService.validateUserEmail(data);
   }
 
-  @Post("Login/CPF")
+  @Post('login/cpf')
   async loginCpf(@Body() data: CreateAuthDto) {
-    return this.authService.validateUserCpf(data)
+    return this.authService.validateUserCpf(data);
   }
 
-  @Get()
   @UseGuards(AuthGuard(), IsPersonalAuthorization)
+  @Get()
   @ApiBearerAuth()
-  async getUser(@Request() req) {
-    return "user";
-  }
+  async getUser(@userLogged() user: IUserEntity) {
+    return user;
 }
-
+}
