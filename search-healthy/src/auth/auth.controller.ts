@@ -4,7 +4,6 @@ import { AuthGuard } from '@nestjs/passport';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { IUserEntity } from 'src/user/entities/user.entity';
 import { HandleException } from 'src/utils/exceptions/exceptionsHelper';
-
 import { AuthService } from './auth.service';
 import { IsPersonalAuthorization } from './decorators/is-personal.decorator';
 import { userLogged } from './decorators/user-logged.decorator';

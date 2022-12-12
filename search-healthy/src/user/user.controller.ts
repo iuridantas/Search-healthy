@@ -28,7 +28,6 @@ export class UserController {
 
   @UseGuards(AuthGuard(), IsPersonalAuthorization)
   @ApiBearerAuth()
-  @Patch()
   @Get()
   async getALLUser(): Promise<IUserEntity[]> {
     try {
