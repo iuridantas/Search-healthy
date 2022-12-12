@@ -15,6 +15,7 @@ export class TrainingService {
 
   async create(createTrainingDto: CreateTrainingDto): Promise<Training> {
     await this.profileService.findOne(createTrainingDto.profileId);
+    
     const createdTraining: Training = {
       ...createTrainingDto,
       id: randomUUID(),

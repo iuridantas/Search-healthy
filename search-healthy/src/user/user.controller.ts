@@ -19,6 +19,7 @@ import { Response } from 'express';
 import { HandleException } from 'src/utils/exceptions/exceptionsHelper';
 import { AuthGuard } from '@nestjs/passport';
 import { IsPersonalAuthorization } from 'src/auth/decorators/is-personal.decorator';
+import { userLogged } from 'src/auth/decorators/user-logged.decorator';
 
 @ApiTags('Users')
 @Controller('User')
@@ -27,7 +28,7 @@ export class UserController {
 
   @UseGuards(AuthGuard(), IsPersonalAuthorization)
   @ApiBearerAuth()
-  @Patch('/update')
+  @Patch()
   @Get()
   async getALLUser(): Promise<IUserEntity[]> {
     try {
@@ -37,6 +38,8 @@ export class UserController {
     }
   }
 
+  @UseGuards(AuthGuard(), IsPersonalAuthorization)
+  @ApiBearerAuth()
   @Get('/find/:id')
   async getUserById(@Param('id') userId: string): Promise<IUserEntity> {
     try {
@@ -65,12 +68,16 @@ export class UserController {
     }
   }
 
-  @UseGuards(AuthGuard(), IsPersonalAuthorization)
+  @UseGuards(AuthGuard())
   @ApiBearerAuth()
   @Patch('/update')
-  async uptadeUser(@Body() userData: PartialUserDto): Promise<IUserEntity> {
+  async uptadeUser(@Body() userData: PartialUserDto,  @userLogged() user: IUserEntity,): Promise<IUserEntity> {
     try {
-      return await this.service.updateUser(userData);
+      if (userData.id) {
+        delete userData.id;
+      }
+      const dataToUpdate = { ...userData, id: user.id };
+      return await this.service.updateUser(dataToUpdate);
     } catch (err) {
       HandleException(err);
     }
