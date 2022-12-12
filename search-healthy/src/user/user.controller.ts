@@ -8,23 +8,33 @@ import {
   Patch,
   Post,
   Res,
+  UseGuards,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { IUserEntity } from './entities/user.entity';
 import { PartialUserDto } from './DTO/partialUserInput.dto';
 import { UserDto } from './DTO/userInput.dto';
 import { UserService } from './user.service';
 import { Response } from 'express';
 import { HandleException } from 'src/utils/exceptions/exceptionsHelper';
+import { AuthGuard } from '@nestjs/passport';
+import { IsPersonalAuthorization } from 'src/auth/decorators/is-personal.decorator';
 
 @ApiTags('Users')
 @Controller('User')
 export class UserController {
   constructor(private service: UserService) {}
 
+  @UseGuards(AuthGuard(), IsPersonalAuthorization)
+  @ApiBearerAuth()
+  @Patch('/update')
   @Get()
   async getALLUser(): Promise<IUserEntity[]> {
-    return await this.service.getAllUsers();
+    try {
+      return await this.service.getAllUsers();
+    } catch (err) {
+      HandleException(err);
+    }
   }
 
   @Get('/find/:id')
@@ -38,7 +48,7 @@ export class UserController {
 
   @Post('/create')
   async createUser(
-    @Body() { cpf, email, password, name, role }: UserDto,
+    @Body() { cpf, email, password, name }: UserDto,
     @Res() response: Response,
   ) {
     try {
@@ -47,7 +57,6 @@ export class UserController {
         email,
         password,
         name,
-        role,
       });
       response.status(201).send(result);
     } catch (err) {
@@ -56,6 +65,8 @@ export class UserController {
     }
   }
 
+  @UseGuards(AuthGuard(), IsPersonalAuthorization)
+  @ApiBearerAuth()
   @Patch('/update')
   async uptadeUser(@Body() userData: PartialUserDto): Promise<IUserEntity> {
     try {
@@ -65,13 +76,19 @@ export class UserController {
     }
   }
 
+  @UseGuards(AuthGuard())
+  @ApiBearerAuth()
   @Delete('delete/:id')
   async deleteUserById(@Param('id') userId: string): Promise<string> {
-    const userIsDeleted = await this.service.deleteUserById(userId);
-    if (userIsDeleted) {
-      return 'Usuário excluído com sucesso';
-    } else {
-      return 'Usuário não encontrado';
+    try {
+      const userIsDeleted = await this.service.deleteUserById(userId);
+      if (userIsDeleted) {
+        return 'Usuário excluído com sucesso';
+      } else {
+        return 'Usuário não encontrado';
+      }
+    } catch (err) {
+      HandleException(err);
     }
   }
 }

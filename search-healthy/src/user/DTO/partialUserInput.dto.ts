@@ -5,4 +5,5 @@ import { UserDto } from './userInput.dto';
 export class PartialUserDto extends PartialType(UserDto) {
   @ApiProperty()
   id: string;
+  role?: string;
 }

@@ -26,8 +26,8 @@ export class AuthController {
     return this.authService.validateUserCpf(data);
   }
 
-  @UseGuards(AuthGuard(), IsPersonalAuthorization)
   @Get()
+  @UseGuards(AuthGuard(), IsPersonalAuthorization)
   @ApiBearerAuth()
   async getUser(@userLogged() user: IUserEntity) {
     return user;

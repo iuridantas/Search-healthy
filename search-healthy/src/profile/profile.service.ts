@@ -25,7 +25,7 @@ export class ProfileService {
   }
 
   async update(updateProfileDto: UpdateProfileDto): Promise<Profile> {
-    if (!updateProfileDto.studentsIds && !updateProfileDto.teachersIds) {
+    if (!updateProfileDto.studentsIds && !updateProfileDto.personalsIds) {
       throw new Exception(
         Exceptions.InvalidData,
         'Não tá enviando a referencia pra conexão',

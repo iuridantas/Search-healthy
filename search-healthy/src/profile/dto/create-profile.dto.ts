@@ -31,7 +31,7 @@ export class CreateProfileDto {
   services: string[];
 
   @ApiProperty()
-  teachersIds?: string[];
+  personalsIds?: string[];
 
   @ApiProperty()
   studentsIds?: string[];

@@ -10,7 +10,7 @@ import { Profile } from './entities/profile.entity';
 export class ProfileRepository {
   private data = {
     students: true,
-    teachers: true,
+    personals: true,
   };
   
   constructor(private readonly prisma: PrismaService) {}
@@ -46,10 +46,10 @@ export class ProfileRepository {
   async updateProfile(updateProfile: UpdateProfileDto): Promise<Profile> {
     try {
       const studentsIds = updateProfile.studentsIds;
-      const teachersIds = updateProfile.teachersIds;
+      const personalsIds = updateProfile.personalsIds;
 
       delete updateProfile.studentsIds;
-      delete updateProfile.teachersIds;
+      delete updateProfile.personalsIds;
 
       return await this.prisma.profile.update({
         where: { id: updateProfile.id },
@@ -57,8 +57,8 @@ export class ProfileRepository {
           students: {
             connect: studentsIds?.map((id) => ({ id: id })),
           },
-          teachers: {
-            connect: teachersIds?.map((id) => ({ id: id })),
+          personals: {
+            connect: personalsIds?.map((id) => ({ id: id })),
           },
         },
         include: this.data,
