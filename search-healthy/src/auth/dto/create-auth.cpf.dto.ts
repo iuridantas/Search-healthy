@@ -1,16 +1,12 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsString } from "class-validator";
 
-export class CreateAuthDto {
+export class CreateAuthCpfDto {
   @ApiProperty()
   @IsString()
-  email: string;
+  cpf: string
 
   @ApiProperty()
   @IsString()
   password: string;
-
-  @ApiProperty()
-  @IsString()
-  cpf: string
 }

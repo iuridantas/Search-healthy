@@ -23,9 +23,9 @@ export class UserService {
     const hashed = await hash(user.password, 10);
     userEntity.password = hashed;
 
-    const cretedUser = await this.userRepository.createUser(userEntity);
-    delete cretedUser.password;
-    return cretedUser;
+    const createdUser = await this.userRepository.createUser(userEntity);
+    delete createdUser.password;
+    return createdUser;
   }
 
   async updateUser(userData: PartialUserDto): Promise<IUserEntity> {

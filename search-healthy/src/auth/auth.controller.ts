@@ -7,21 +7,22 @@ import { IUserEntity } from 'src/user/entities/user.entity';
 import { AuthService } from './auth.service';
 import { IsPersonalAuthorization } from './decorators/is-personal.decorator';
 import { userLogged } from './decorators/user-logged.decorator';
-import { CreateAuthDto } from './dto/create-auth.dto';
+import { CreateAuthCpfDto } from './dto/create-auth.cpf.dto';
+import { CreateAuthEmailDto } from './dto/create-auth.email.dto';
 
 @ApiTags('Authorization')
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Post('/login')
-  async loginEmail(@Body() data: CreateAuthDto) {
-    console.log('chegou')
+  @Post('/login/email')
+  async loginEmail(@Body() data: CreateAuthEmailDto) {
+    console.log('chegou');
     return this.authService.validateUserEmail(data);
   }
 
-  @Post('login/cpf')
-  async loginCpf(@Body() data: CreateAuthDto) {
+  @Post('/login/cpf')
+  async loginCpf(@Body() data: CreateAuthCpfDto) {
     return this.authService.validateUserCpf(data);
   }
 
@@ -30,5 +31,5 @@ export class AuthController {
   @ApiBearerAuth()
   async getUser(@userLogged() user: IUserEntity) {
     return user;
-}
+  }
 }

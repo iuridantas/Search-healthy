@@ -1,11 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { UserService } from 'src/user/user.service';
-import { CreateAuthDto } from './dto/create-auth.dto';
+import { CreateAuthEmailDto } from './dto/create-auth.email.dto';
 import { compare } from 'bcrypt';
 import { Exception } from 'src/utils/exceptions/exception';
 import { Exceptions } from 'src/utils/exceptions/exceptionsHelper';
 import { IUserEntity } from 'src/user/entities/user.entity';
 import { JwtService } from '@nestjs/jwt';
+import { CreateAuthCpfDto } from './dto/create-auth.cpf.dto';
 
 @Injectable()
 export class AuthService {
@@ -14,7 +15,7 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  async validateUserEmail({ email, password }: CreateAuthDto) {
+  async validateUserEmail({ email, password }: CreateAuthEmailDto) {
     const user = await this.userService.findUserByEmail(email);
 
     const passwordIsValid = await compare(password, user.password);
@@ -38,7 +39,7 @@ export class AuthService {
     };
   }
 
-  async validateUserCpf({ cpf, password }: CreateAuthDto) {
+  async validateUserCpf({ cpf, password }: CreateAuthCpfDto) {
     const user = await this.userService.findUserByCpf(cpf);
 
     const passwordIsValid = await compare(password, user.password);
