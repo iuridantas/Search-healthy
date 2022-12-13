@@ -58,4 +58,26 @@ export class UserService {
   async findUserByEmail(email: string): Promise<IUserEntity> {
     return await this.userRepository.findUserByEmail(email);
   }
+
+  async homeStudents(id: string) {
+    const foundUser = await this.userRepository.homeStudents(id);
+    delete foundUser.cpf
+    delete foundUser.email
+    delete foundUser.id
+    delete foundUser.name
+    delete foundUser.password
+    delete foundUser.role
+    return foundUser;
+  }
+
+  async homePersonals(id: string) {
+    const foundUser = await this.userRepository.homePersonals(id);
+    delete foundUser.cpf
+    delete foundUser.email
+    delete foundUser.id
+    delete foundUser.name
+    delete foundUser.password
+    delete foundUser.role
+    return foundUser;
+  }
 }

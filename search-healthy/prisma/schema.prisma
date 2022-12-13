@@ -26,7 +26,7 @@ model User {
   ProfileStudent    Profile? @relation(fields: [profileStudentId], references: [id], name: "profile student", onDelete: Cascade)
   profileStudentId  String?
   ProfilePersonal   Profile? @relation(fields: [profilePersonalId], references: [id], onDelete: Cascade)
-  profilePersonalId String?
+  profilePersonalId String? 
 }
 
 model Training {
