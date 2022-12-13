@@ -5,9 +5,11 @@ import { UserService } from './user.service';
 import { UserController } from './user.controller';
 import { UserRepository } from './user.repository';
 
-
 @Module({
-  imports: [DatabaseModule, PassportModule.register({ defaultStrategy: 'jwt' }),],
+  imports: [
+    DatabaseModule,
+    PassportModule.register({ defaultStrategy: 'jwt' }),
+  ],
   controllers: [UserController],
   providers: [UserService, UserRepository],
   exports: [UserService],

@@ -6,7 +6,10 @@ import { ProfileRepository } from './profile.repository';
 import { PassportModule } from '@nestjs/passport';
 
 @Module({
-  imports: [DatabaseModule, PassportModule.register({ defaultStrategy: 'jwt' }),],
+  imports: [
+    DatabaseModule,
+    PassportModule.register({ defaultStrategy: 'jwt' }),
+  ],
   controllers: [ProfileController],
   providers: [ProfileService, ProfileRepository],
 })

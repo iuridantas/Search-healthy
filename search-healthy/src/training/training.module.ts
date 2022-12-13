@@ -9,7 +9,10 @@ import { UserRepository } from 'src/user/user.repository';
 import { PassportModule } from '@nestjs/passport';
 
 @Module({
-  imports: [DatabaseModule, PassportModule.register({ defaultStrategy: 'jwt' }),],
+  imports: [
+    DatabaseModule,
+    PassportModule.register({ defaultStrategy: 'jwt' }),
+  ],
   controllers: [TrainingController],
   providers: [
     TrainingService,

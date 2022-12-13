@@ -1,8 +1,8 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 generator erd {
-    provider = "prisma-erd-generator"
-    output   = "../db.png"
+  provider = "prisma-erd-generator"
+  output   = "../db.png"
 }
 
 generator client {
@@ -15,34 +15,35 @@ datasource db {
 }
 
 model User {
-  id               String   @id @unique
-  name             String
-  email            String   @unique
-  password         String
-  cpf              String   @unique
-  role             String
-  createdAt        DateTime @default(now())
-  updatesAt        DateTime @updatedAt
-  ProfileStudent   Profile? @relation(fields: [profileStudentId], references: [id], name: "profile student", onDelete: Cascade)
-  profileStudentId String?
+  id                String   @id @unique
+  name              String
+  email             String   @unique
+  password          String
+  cpf               String   @unique
+  role              String
+  createdAt         DateTime @default(now())
+  updatesAt         DateTime @updatedAt
+  ProfileStudent    Profile? @relation(fields: [profileStudentId], references: [id], name: "profile student", onDelete: Cascade)
+  profileStudentId  String?
   ProfilePersonal   Profile? @relation(fields: [profilePersonalId], references: [id], onDelete: Cascade)
   profilePersonalId String?
 }
 
 model Training {
-  id         String   @id @unique
-  profileId  String
-  Profile    Profile  @relation(fields: [profileId], references: [id], onDelete: Cascade)
-  day        DateTime
-  exercises  String[]
-  repetition String
-  aerobic    String
-  stretching String
+  id             String   @id @unique
+  profileId      String
+  Profile        Profile  @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  day            DateTime
+  exercises      String[]
+  repetition     String
+  aerobic        String
+  stretching     String
+  muscularegroup String
 }
 
 model Profile {
   id        String     @id @unique
-  personals  User[]
+  personals User[]
   students  User[]     @relation(name: "profile student")
   name      String
   image     String

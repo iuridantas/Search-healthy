@@ -23,7 +23,6 @@ export class ProfileController {
 
   @UseGuards(AuthGuard(), IsPersonalAuthorization)
   @ApiBearerAuth()
-  @Patch('/update')
   @Post('/create')
   async create(@Body() createProfileDto: CreateProfileDto) {
     try {

@@ -1,12 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { UserService } from 'src/user/user.service';
-import { CreateAuthEmailDto } from './dto/create-auth.email.dto';
+import { CreateAuthEmailDto } from './dto/create-auth.dto';
 import { compare } from 'bcrypt';
 import { Exception } from 'src/utils/exceptions/exception';
 import { Exceptions } from 'src/utils/exceptions/exceptionsHelper';
 import { IUserEntity } from 'src/user/entities/user.entity';
 import { JwtService } from '@nestjs/jwt';
-
 
 @Injectable()
 export class AuthService {

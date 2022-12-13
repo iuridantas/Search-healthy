@@ -11,6 +11,10 @@ export class CreateTrainingDto {
   day: Date;
 
   @ApiProperty()
+  @IsString()
+  muscularegroup: string;
+
+  @ApiProperty()
   @IsArray()
   exercises: string[];
 

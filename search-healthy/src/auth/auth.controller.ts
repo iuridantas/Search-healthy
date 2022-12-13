@@ -7,20 +7,20 @@ import { HandleException } from 'src/utils/exceptions/exceptionsHelper';
 import { AuthService } from './auth.service';
 import { IsPersonalAuthorization } from './decorators/is-personal.decorator';
 import { userLogged } from './decorators/user-logged.decorator';
-import { CreateAuthEmailDto } from './dto/create-auth.email.dto';
+import { CreateAuthEmailDto } from './dto/create-auth.dto';
 
 @ApiTags('Authorization')
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Post('/login/email')
+  @Post('/login')
   async loginEmail(@Body() data: CreateAuthEmailDto) {
     try {
-    return this.authService.validateUser(data);
-  } catch (error) {
-    HandleException(error);
-  }
+      return this.authService.validateUser(data);
+    } catch (error) {
+      HandleException(error);
+    }
   }
 
   @Get()

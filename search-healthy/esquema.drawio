@@ -10,7 +10,7 @@
                 <mxCell id="46" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1.011;exitY=0.329;exitDx=0;exitDy=0;entryX=-0.012;entryY=0.86;entryDx=0;entryDy=0;entryPerimeter=0;exitPerimeter=0;" parent="1" source="40" target="41" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="40" value="USER&lt;br&gt;&lt;br&gt;&lt;br&gt;ID&lt;br&gt;NAME&lt;br&gt;EMAIL&lt;br&gt;PASSWORD&lt;br&gt;CPF&lt;br&gt;ROLE&lt;br&gt;TEACHER[]&lt;br&gt;STUDENT[]" style="rounded=0;whiteSpace=wrap;html=1;fillColor=default;verticalAlign=top;" parent="1" vertex="1">
+                <mxCell id="40" value="USER&lt;br&gt;&lt;br&gt;&lt;br&gt;ID&lt;br&gt;NAME&lt;br&gt;EMAIL&lt;br&gt;PASSWORD&lt;br&gt;CPF&lt;br&gt;ROLE&lt;br&gt;PERSONAL[]&lt;br&gt;STUDENT[]" style="rounded=0;whiteSpace=wrap;html=1;fillColor=default;verticalAlign=top;" parent="1" vertex="1">
                     <mxGeometry x="20" y="492.5" width="90" height="175" as="geometry"/>
                 </mxCell>
                 <mxCell id="49" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1.006;exitY=0.635;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="41" target="42" edge="1">
@@ -18,11 +18,11 @@
                         <mxPoint x="360" y="610" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="41" value="PROFILE&lt;br&gt;&lt;br&gt;ID&lt;br&gt;NAME&lt;br&gt;IMAGE&lt;br&gt;TALL&lt;br&gt;WEIGTH&lt;br&gt;OBJECTIVE&lt;br&gt;GYM&lt;br&gt;&lt;font color=&quot;#ffffff&quot;&gt;SERVICES&lt;br&gt;&lt;/font&gt;TEACHERID&lt;br&gt;STUDENTID" style="rounded=0;whiteSpace=wrap;html=1;fillColor=default;verticalAlign=top;" parent="1" vertex="1">
+                <mxCell id="41" value="PROFILE&lt;br&gt;&lt;br&gt;ID&lt;br&gt;NAME&lt;br&gt;IMAGE&lt;br&gt;TALL&lt;br&gt;WEIGTH&lt;br&gt;OBJECTIVE&lt;br&gt;GYM&lt;br&gt;&lt;font color=&quot;#ffffff&quot;&gt;SERVICES&lt;br&gt;&lt;/font&gt;PERSONALID&lt;br&gt;STUDENTID" style="rounded=0;whiteSpace=wrap;html=1;fillColor=default;verticalAlign=top;" parent="1" vertex="1">
                     <mxGeometry x="200" y="480" width="160" height="200" as="geometry"/>
                 </mxCell>
-                <mxCell id="42" value="TRAINING&lt;br&gt;&lt;br&gt;ID&lt;br&gt;PROFILEID&lt;br&gt;DAY&lt;br&gt;EXERCISES&lt;br&gt;REPETITION&lt;br&gt;AEROBIC&lt;br&gt;STRETCHING" style="rounded=0;whiteSpace=wrap;html=1;fillColor=default;verticalAlign=top;" parent="1" vertex="1">
-                    <mxGeometry x="440" y="620" width="120" height="150" as="geometry"/>
+                <mxCell id="42" value="TRAINING&lt;br&gt;&lt;br&gt;ID&lt;br&gt;PROFILEID&lt;br&gt;DAY&lt;br&gt;EXERCISES&lt;br&gt;REPETITION&lt;br&gt;AEROBIC&lt;br&gt;STRETCHING&lt;br&gt;MUSCULAREGROUP" style="rounded=0;whiteSpace=wrap;html=1;fillColor=default;verticalAlign=top;" parent="1" vertex="1">
+                    <mxGeometry x="440" y="620" width="140" height="160" as="geometry"/>
                 </mxCell>
                 <mxCell id="47" value="N:1" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
                     <mxGeometry x="160" y="610" width="30" height="20" as="geometry"/>

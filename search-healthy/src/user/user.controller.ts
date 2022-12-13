@@ -70,7 +70,10 @@ export class UserController {
   @UseGuards(AuthGuard())
   @ApiBearerAuth()
   @Patch('/update')
-  async uptadeUser(@Body() userData: PartialUserDto,  @userLogged() user: IUserEntity,): Promise<IUserEntity> {
+  async uptadeUser(
+    @Body() userData: PartialUserDto,
+    @userLogged() user: IUserEntity,
+  ) {
     try {
       if (userData.id) {
         delete userData.id;
@@ -86,15 +89,11 @@ export class UserController {
   @ApiBearerAuth()
   @Delete('delete/:id')
   async deleteUserById(@Param('id') userId: string): Promise<string> {
-    try {
-      const userIsDeleted = await this.service.deleteUserById(userId);
-      if (userIsDeleted) {
-        return 'Usuário excluído com sucesso';
-      } else {
-        return 'Usuário não encontrado';
-      }
-    } catch (err) {
-      HandleException(err);
+    const userIsDeleted = await this.service.deleteUserById(userId);
+    if (userIsDeleted) {
+      return 'Usuário excluído com sucesso';
+    } else {
+      return 'Usuário não encontrado';
     }
   }
 }
