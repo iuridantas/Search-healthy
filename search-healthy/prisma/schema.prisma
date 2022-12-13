@@ -33,7 +33,7 @@ model Training {
   id             String   @id @unique
   profileId      String
   Profile        Profile  @relation(fields: [profileId], references: [id], onDelete: Cascade)
-  day            DateTime
+  day            String
   exercises      String[]
   repetition     String
   aerobic        String
@@ -42,15 +42,15 @@ model Training {
 }
 
 model Profile {
-  id        String     @id @unique
-  personals User[]
-  students  User[]     @relation(name: "profile student")
-  name      String
-  image     String
-  tall      Float
-  weigth    Float
-  objective String
-  gym       String
-  services  String[]
-  Training  Training[]
+  id           String     @id @unique
+  personals    User[]
+  students     User[]     @relation(name: "profile student")
+  name         String
+  image        String
+  tall         Float
+  weigth       Float
+  objective    String
+  gym          String
+  services     String[]
+  Training     Training[]
 }

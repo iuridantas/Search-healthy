@@ -21,7 +21,7 @@ import { AuthGuard } from '@nestjs/passport';
 export class ProfileController {
   constructor(private readonly profileService: ProfileService) {}
 
-  @UseGuards(AuthGuard(), IsPersonalAuthorization)
+  @UseGuards(AuthGuard())
   @ApiBearerAuth()
   @Post('/create')
   async create(@Body() createProfileDto: CreateProfileDto) {
@@ -54,7 +54,7 @@ export class ProfileController {
     }
   }
 
-  @UseGuards(AuthGuard(), IsPersonalAuthorization)
+  @UseGuards(AuthGuard())
   @ApiBearerAuth()
   @Patch('/update')
   async update(@Body() updateProfileDto: UpdateProfileDto) {

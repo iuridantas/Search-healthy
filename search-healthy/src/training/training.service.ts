@@ -16,9 +16,14 @@ export class TrainingService {
   async create(createTrainingDto: CreateTrainingDto): Promise<Training> {
     await this.profileService.findOne(createTrainingDto.profileId);
 
+    const Today = new Date(Date.now()).toISOString().slice(0, 10);
+    const formatedToday =
+      Today.slice(8, 10) + '/' + Today.slice(5, 7) + '/' + Today.slice(0, 4);
+
     const createdTraining: Training = {
       ...createTrainingDto,
       id: randomUUID(),
+      day: formatedToday,
     };
     return await this.trainingRepository.createTraining(createdTraining);
   }

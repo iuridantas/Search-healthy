@@ -11,6 +11,7 @@ export class ProfileRepository {
   private data = {
     students: true,
     personals: true,
+    Training: true,
   };
 
   constructor(private readonly prisma: PrismaService) {}

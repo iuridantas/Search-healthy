@@ -8,10 +8,6 @@ export class CreateTrainingDto {
 
   @ApiProperty()
   @IsString()
-  day: Date;
-
-  @ApiProperty()
-  @IsString()
   muscularegroup: string;
 
   @ApiProperty()
