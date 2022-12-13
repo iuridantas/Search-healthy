@@ -44,14 +44,9 @@ export class UserService {
     return await this.userRepository.findAllUsers();
   }
 
-  async deleteUserById(userId: string): Promise<boolean> {
-    try {
+  async deleteUserById(userId: string): Promise<string> {
       await this.userRepository.deleteUser(userId);
-      return true;
-    } catch (err) {
-      console.log(err);
-      return false;
-    }
+      return 'Usuário excluido com sucesso';
   }
 
   async getUserById(userId: string): Promise<IUserEntity> {

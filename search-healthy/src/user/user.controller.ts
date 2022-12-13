@@ -89,11 +89,10 @@ export class UserController {
   @ApiBearerAuth()
   @Delete('delete/:id')
   async deleteUserById(@Param('id') userId: string): Promise<string> {
-    const userIsDeleted = await this.service.deleteUserById(userId);
-    if (userIsDeleted) {
-      return 'Usuário excluído com sucesso';
-    } else {
-      return 'Usuário não encontrado';
-    }
+    try {
+      return await this.service.deleteUserById(userId);
+  } catch (err) {
+    HandleException(err);
   }
+}
 }
