@@ -16,7 +16,7 @@ export class HomeController {
   @Get('/student')
   async homeStudents(@Query('id') id: string, @Res() res: Response) {
     try {
-      return await this.homeService.homeStudents(id);
+      return this.homeService.homeStudents(id);
     } catch (err) {
       HandleException(err);
     }
@@ -27,7 +27,7 @@ export class HomeController {
   @Get('/personal')
   async homePersonals(@Query('id') id: string, @Res() res: Response) {
     try {
-      return await this.homeService.homePersonals(id);
+      return this.homeService.homePersonals(id);
     } catch (err) {
       HandleException(err);
     }
