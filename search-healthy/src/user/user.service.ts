@@ -45,8 +45,8 @@ export class UserService {
   }
 
   async deleteUserById(userId: string): Promise<string> {
-      await this.userRepository.deleteUser(userId);
-      return 'Usuário excluido com sucesso';
+    await this.userRepository.deleteUser(userId);
+    return 'Usuário excluido com sucesso';
   }
 
   async getUserById(userId: string): Promise<IUserEntity> {
@@ -61,23 +61,23 @@ export class UserService {
 
   async homeStudents(id: string) {
     const foundUser = await this.userRepository.homeStudents(id);
-    delete foundUser.cpf
-    delete foundUser.email
-    delete foundUser.id
-    delete foundUser.name
-    delete foundUser.password
-    delete foundUser.role
+    delete foundUser.cpf;
+    delete foundUser.email;
+    delete foundUser.id;
+    delete foundUser.name;
+    delete foundUser.password;
+    delete foundUser.role;
     return foundUser;
   }
 
   async homePersonals(id: string) {
     const foundUser = await this.userRepository.homePersonals(id);
-    delete foundUser.cpf
-    delete foundUser.email
-    delete foundUser.id
-    delete foundUser.name
-    delete foundUser.password
-    delete foundUser.role
+    delete foundUser.cpf;
+    delete foundUser.email;
+    delete foundUser.id;
+    delete foundUser.name;
+    delete foundUser.password;
+    delete foundUser.role;
     return foundUser;
   }
 }

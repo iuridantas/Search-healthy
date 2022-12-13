@@ -79,11 +79,11 @@ export class UserRepository {
     return await this.prisma.user.findFirst({
       where: { id: id },
       include: {
-        ProfileStudent:{
-          select:{
-            services:true
-          }
-        }
+        ProfileStudent: {
+          select: {
+            services: true,
+          },
+        },
       },
     });
   }
@@ -92,15 +92,15 @@ export class UserRepository {
     return await this.prisma.user.findFirst({
       where: { id: id },
       include: {
-        ProfilePersonal:{
-          select:{
-            students:{
-              select:{
-                name:true
-              }
+        ProfilePersonal: {
+          select: {
+            students: {
+              select: {
+                name: true,
+              },
             },
-          }
-        }
+          },
+        },
       },
     });
   }
