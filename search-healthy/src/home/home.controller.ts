@@ -4,6 +4,7 @@ import { Response } from 'express';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { HandleException } from 'src/utils/exceptions/exceptionsHelper';
+import { IsPersonalAuthorization } from 'src/auth/decorators/is-personal.decorator';
 
 @ApiTags('home')
 @Controller('/home')
@@ -21,7 +22,7 @@ export class HomeController {
     }
   }
 
-  @UseGuards(AuthGuard())
+  @UseGuards(AuthGuard(), IsPersonalAuthorization)
   @ApiBearerAuth()
   @Get('/personal')
   async homePersonals(@Query('id') id: string, @Res() res: Response) {
