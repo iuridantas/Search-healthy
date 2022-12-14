@@ -1,4 +1,4 @@
-import { Controller, Get, Query, Res, UseGuards } from '@nestjs/common';
+import { Controller, Get, Param, Query, Res, UseGuards } from '@nestjs/common';
 import { HomeService } from './home.service';
 import { Response } from 'express';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
@@ -13,10 +13,10 @@ export class HomeController {
 
   @UseGuards(AuthGuard())
   @ApiBearerAuth()
-  @Get('/student')
-  async homeStudents(@Query('id') id: string, @Res() res: Response) {
+  @Get('/student/:id')
+  async homeStudents(@Param('id') id: string) {
     try {
-      return this.homeService.homeStudents(id);
+      return await this.homeService.homeStudents(id);
     } catch (err) {
       HandleException(err);
     }
@@ -24,10 +24,10 @@ export class HomeController {
 
   @UseGuards(AuthGuard(), IsPersonalAuthorization)
   @ApiBearerAuth()
-  @Get('/personal')
-  async homePersonals(@Query('id') id: string, @Res() res: Response) {
+  @Get('/personal/:id')
+  async homePersonals(@Param('id') id: string) {
     try {
-      return this.homeService.homePersonals(id);
+      return await this.homeService.homePersonals(id);
     } catch (err) {
       HandleException(err);
     }
