@@ -47,6 +47,7 @@ export class ProfileRepository {
       return await this.prisma.profile.update({
         where: { id: updateProfile.id },
         data: {
+          ...updateProfile,
           students: {
             connect: studentsIds?.map((id) => ({ id: id })),
           },
