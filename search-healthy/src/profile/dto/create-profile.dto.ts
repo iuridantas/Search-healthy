@@ -9,15 +9,7 @@ export class CreateProfileDto {
   @ApiProperty()
   @IsString()
   image: string;
-
-  @ApiProperty()
-  @IsNumber()
-  tall: number;
-
-  @ApiProperty()
-  @IsNumber()
-  weigth: number;
-
+  
   @ApiProperty()
   @IsString()
   objective: string;
@@ -25,10 +17,6 @@ export class CreateProfileDto {
   @ApiProperty()
   @IsString()
   gym: string;
-
-  @ApiProperty()
-  @IsArray()
-  services: string[];
 
   @ApiProperty()
   personalsIds?: string[];

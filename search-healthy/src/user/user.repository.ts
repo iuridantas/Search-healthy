@@ -75,19 +75,6 @@ export class UserRepository {
     }
   }
 
-  async homeStudents(id: string): Promise<IUserEntity> {
-    return await this.prisma.user.findFirst({
-      where: { id: id },
-      include: {
-        ProfileStudent: {
-          select: {
-            services: true,
-          },
-        },
-      },
-    });
-  }
-
   async homePersonals(id: string): Promise<IUserEntity> {
     return await this.prisma.user.findFirst({
       where: { id: id },

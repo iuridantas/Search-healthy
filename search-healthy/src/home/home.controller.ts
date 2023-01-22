@@ -11,17 +11,6 @@ import { IsPersonalAuthorization } from 'src/auth/decorators/is-personal.decorat
 export class HomeController {
   constructor(private readonly homeService: HomeService) {}
 
-  @UseGuards(AuthGuard())
-  @ApiBearerAuth()
-  @Get('/student/:id')
-  async homeStudents(@Param('id') id: string) {
-    try {
-      return await this.homeService.homeStudents(id);
-    } catch (err) {
-      HandleException(err);
-    }
-  }
-
   @UseGuards(AuthGuard(), IsPersonalAuthorization)
   @ApiBearerAuth()
   @Get('/personal/:id')

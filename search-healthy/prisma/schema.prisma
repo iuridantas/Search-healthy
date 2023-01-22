@@ -47,10 +47,7 @@ model Profile {
   students     User[]     @relation(name: "profile student")
   name         String
   image        String
-  tall         Float
-  weigth       Float
   objective    String
   gym          String
-  services     String[]
   Training     Training[]
 }
