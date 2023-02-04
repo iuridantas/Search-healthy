@@ -50,7 +50,7 @@ export class UserController {
 
   @Post('/create')
   async createUser(
-    @Body() { cpf, email, password, name }: UserDto,
+    @Body() { cpf, email, password, name, role }: UserDto,
     @Res() response: Response,
   ) {
     try {
@@ -59,6 +59,7 @@ export class UserController {
         email,
         password,
         name,
+        role,
       });
       response.status(201).send(result);
     } catch (err) {

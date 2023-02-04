@@ -59,15 +59,5 @@ export class UserService {
     return await this.userRepository.findUserByEmail(email);
   }
 
-  async homePersonals(id: string) {
-    const foundUser = await this.userRepository.homePersonals(id);
-    delete foundUser.cpf;
-    delete foundUser.email;
-    delete foundUser.id;
-    delete foundUser.name;
-    delete foundUser.password;
-    delete foundUser.role;
-    return foundUser;
-  }
 }
 
