@@ -43,11 +43,13 @@ model Training {
 
 model Profile {
   id           String     @id @unique
-  personals    User[]
+  personals    User[]      
   students     User[]     @relation(name: "profile student")
   name         String
   image        String
   objective    String
   gym          String
+  personalsIds String[]
+  studentsIds  String[]
   Training     Training[]
 }
