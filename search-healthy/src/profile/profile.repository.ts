@@ -17,7 +17,7 @@ export class ProfileRepository {
   constructor(private readonly prisma: PrismaService) {}
 
   async createProfile(
-    { name, image, objective, gym, personalsIds,  }: CreateProfileDto,
+    { name, image, objective, gym, }: CreateProfileDto,
     id: string,
   ): Promise<Profile> {
     try {
@@ -28,7 +28,6 @@ export class ProfileRepository {
           image: image,
           objective: objective,
           gym: gym,
-          personalsIds: personalsIds,
         },
         include: this.data,
       });

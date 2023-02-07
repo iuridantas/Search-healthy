@@ -49,7 +49,5 @@ model Profile {
   image        String
   objective    String
   gym          String
-  personalsIds String[]
-  studentsIds  String[]
   Training     Training[]
 }
