@@ -17,10 +17,10 @@ export class CreateProfileDto {
   @ApiProperty()
   @IsString()
   gym: string;
+  
+  @ApiProperty()
+  studentsIds?: string[];
 
   @ApiProperty()
   personalsIds?: string[];
-
-  @ApiProperty()
-  studentsIds?: string[];
 }
