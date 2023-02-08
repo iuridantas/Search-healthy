@@ -23,16 +23,16 @@ model User {
   role              String
   createdAt         DateTime @default(now())
   updatesAt         DateTime @updatedAt
-  ProfileStudent    Profile? @relation(fields: [profileStudentId], references: [id], name: "profile student", onDelete: Cascade)
+  ProfileStudent    Profile? @relation(fields: [profileStudentId], references: [id], name: "profile student")
   profileStudentId  String?
-  ProfilePersonal   Profile? @relation(fields: [profilePersonalId], references: [id], onDelete: Cascade)
+  ProfilePersonal   Profile? @relation(fields: [profilePersonalId], references: [id])
   profilePersonalId String? 
 }
 
 model Training {
   id             String   @id @unique
   profileId      String
-  Profile        Profile  @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  Profile        Profile  @relation(fields: [profileId], references: [id])
   day            String
   exercises      String[]
   repetition     String
