@@ -23,10 +23,10 @@ model User {
   role              String
   createdAt         DateTime @default(now())
   updatesAt         DateTime @updatedAt
-  ProfileStudent    Profile? @relation(fields: [profilePersonalId], references: [id], name: "profile student")
-  profileStudentId  String?
-  ProfilePersonal   Profile? @relation(fields: [profileStudentId], references: [id])
-  profilePersonalId String? 
+  ProfileStudent    Profile[] @relation(name: "profile student")
+  profileStudentId  String[]
+  ProfilePersonal   Profile[] 
+  profilePersonalId String[] 
 }
 
 model Training {
@@ -43,8 +43,10 @@ model Training {
 
 model Profile {
   id           String     @id @unique
-  personals    User[]      
-  students     User[]     @relation(name: "profile student")
+  personals    User?     @relation(fields: [profilePersonalId], references: [id])
+  students     User?     @relation(fields: [profileStudentId], references: [id], name: "profile student")
+  profilePersonalId String?
+  profileStudentId  String? 
   name         String
   image        String
   objective    String

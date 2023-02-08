@@ -8,8 +8,8 @@ CREATE TABLE "User" (
     "role" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatesAt" TIMESTAMP(3) NOT NULL,
-    "profileStudentId" TEXT,
-    "profilePersonalId" TEXT,
+    "profileStudentId" TEXT[],
+    "profilePersonalId" TEXT[],
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
@@ -18,7 +18,7 @@ CREATE TABLE "User" (
 CREATE TABLE "Training" (
     "id" TEXT NOT NULL,
     "profileId" TEXT NOT NULL,
-    "day" TIMESTAMP(3) NOT NULL,
+    "day" TEXT NOT NULL,
     "exercises" TEXT[],
     "repetition" TEXT NOT NULL,
     "aerobic" TEXT NOT NULL,
@@ -31,13 +31,12 @@ CREATE TABLE "Training" (
 -- CreateTable
 CREATE TABLE "Profile" (
     "id" TEXT NOT NULL,
+    "profilePersonalId" TEXT,
+    "profileStudentId" TEXT,
     "name" TEXT NOT NULL,
     "image" TEXT NOT NULL,
-    "tall" DOUBLE PRECISION NOT NULL,
-    "weigth" DOUBLE PRECISION NOT NULL,
     "objective" TEXT NOT NULL,
     "gym" TEXT NOT NULL,
-    "services" TEXT[],
 
     CONSTRAINT "Profile_pkey" PRIMARY KEY ("id")
 );
@@ -58,10 +57,10 @@ CREATE UNIQUE INDEX "Training_id_key" ON "Training"("id");
 CREATE UNIQUE INDEX "Profile_id_key" ON "Profile"("id");
 
 -- AddForeignKey
-ALTER TABLE "User" ADD CONSTRAINT "User_profileStudentId_fkey" FOREIGN KEY ("profileStudentId") REFERENCES "Profile"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Training" ADD CONSTRAINT "Training_profileId_fkey" FOREIGN KEY ("profileId") REFERENCES "Profile"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "User" ADD CONSTRAINT "User_profilePersonalId_fkey" FOREIGN KEY ("profilePersonalId") REFERENCES "Profile"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Profile" ADD CONSTRAINT "Profile_profilePersonalId_fkey" FOREIGN KEY ("profilePersonalId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Training" ADD CONSTRAINT "Training_profileId_fkey" FOREIGN KEY ("profileId") REFERENCES "Profile"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Profile" ADD CONSTRAINT "Profile_profileStudentId_fkey" FOREIGN KEY ("profileStudentId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
