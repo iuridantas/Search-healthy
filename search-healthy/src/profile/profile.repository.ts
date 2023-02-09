@@ -26,7 +26,7 @@ export class ProfileRepository {
       personalsIds,
     }: CreateProfileDto,
     id: string,
-  ) {
+  ): Promise<Profile> {
     try {
       return await this.prisma.profile.create({
         data: {
