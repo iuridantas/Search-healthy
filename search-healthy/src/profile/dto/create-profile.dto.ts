@@ -19,8 +19,8 @@ export class CreateProfileDto {
   gym: string;
   
   @ApiProperty()
-  studentsIds?: string[];
+  studentsIds?: string;
 
   @ApiProperty()
-  personalsIds?: string[];
+  personalsIds?: string;
 }
