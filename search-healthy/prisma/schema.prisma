@@ -15,7 +15,7 @@ datasource db {
 }
 
 model User {
-  id                String   @id @unique
+  id                String   @id @unique @default(uuid())
   name              String
   email             String   @unique
   password          String
@@ -23,14 +23,14 @@ model User {
   role              String
   createdAt         DateTime @default(now())
   updatesAt         DateTime @updatedAt
-  ProfileStudent    Profile[] @relation(name: "profile student")
-  profileStudentId  String[]
-  ProfilePersonal   Profile[] 
-  profilePersonalId String[] 
+  ProfileStudent    Profile? @relation(fields: [profilePersonalId], references: [id], name: "profile student")
+  profileStudentId  String?
+  ProfilePersonal   Profile? @relation(fields: [profileStudentId], references: [id])
+  profilePersonalId String?
 }
 
 model Training {
-  id             String   @id @unique
+  id             String   @id @unique @default(uuid())
   profileId      String
   Profile        Profile  @relation(fields: [profileId], references: [id])
   day            String
@@ -42,14 +42,12 @@ model Training {
 }
 
 model Profile {
-  id           String     @id @unique
-  personals    User?     @relation(fields: [profilePersonalId], references: [id])
-  students     User?     @relation(fields: [profileStudentId], references: [id], name: "profile student")
-  profilePersonalId String?
-  profileStudentId  String? 
-  name         String
-  image        String
-  objective    String
-  gym          String
-  Training     Training[]
+  id        String     @id @unique @default(uuid())
+  personals User[]
+  students  User[]     @relation(name: "profile student")
+  name      String
+  image     String
+  objective String
+  gym       String
+  Training  Training[]
 }

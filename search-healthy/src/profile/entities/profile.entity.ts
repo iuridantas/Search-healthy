@@ -3,6 +3,6 @@ import { CreateProfileDto } from '../dto/create-profile.dto';
 
 export class Profile extends CreateProfileDto {
   id: string;
-  ProfileStudent: IUserEntity;
-  ProfilePersonal: IUserEntity;
+  students: IUserEntity[];
+  personals: IUserEntity[];
 }

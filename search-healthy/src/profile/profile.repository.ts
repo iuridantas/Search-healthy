@@ -9,22 +9,15 @@ import { Profile } from './entities/profile.entity';
 @Injectable()
 export class ProfileRepository {
   private data = {
-    ProfilePersonal: true,
-    ProfileStudent: true,
+    personals: true,
+    students: true,
     Training: true,
   };
 
   constructor(private readonly prisma: PrismaService) {}
 
   async createProfile(
-    {
-      name,
-      image,
-      objective,
-      gym,
-      studentsIds,
-      personalsIds,
-    }: CreateProfileDto,
+    { name, image, objective, gym, studentsIds, personalsIds }: CreateProfileDto,
     id: string,
   ): Promise<Profile> {
     try {
@@ -35,8 +28,12 @@ export class ProfileRepository {
           image: image,
           objective: objective,
           gym: gym,
-          profilePersonalId: personalsIds,
-          profileStudentId: studentsIds,
+          personals: {
+            connect: personalsIds?.map((id) => ({ id: id })),
+          },
+          students: {
+            connect: studentsIds?.map((id) => ({ id: id })),
+          },
         },
         include: this.data,
       });
@@ -57,8 +54,12 @@ export class ProfileRepository {
         where: { id: updateProfile.id },
         data: {
           ...updateProfile,
-          profilePersonalId: personalsIds,
-          profileStudentId: studentsIds,
+          personals: {
+            connect: personalsIds?.map((id) => ({ id: id })),
+          },
+          students: {
+            connect: studentsIds?.map((id) => ({ id: id })),
+          },
         },
         include: this.data,
       });
