@@ -50,13 +50,14 @@ export class UserController {
 
   @Post('/create')
   async createUser(
-    @Body() { cpf, email, password, name, role }: UserDto,
+    @Body() { cpf, email, password, name, role, image }: UserDto,
     @Res() response: Response,
   ) {
     try {
       const result = await this.service.createUser({
         cpf,
         email,
+        image,
         password,
         name,
         role,

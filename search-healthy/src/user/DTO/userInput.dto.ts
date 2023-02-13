@@ -12,6 +12,10 @@ export class UserDto {
 
   @ApiProperty()
   @IsString()
+  image: string;
+
+  @ApiProperty()
+  @IsString()
   password: string;
 
   @ApiProperty()

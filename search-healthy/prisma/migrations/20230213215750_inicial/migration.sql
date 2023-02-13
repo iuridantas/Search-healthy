@@ -3,6 +3,7 @@ CREATE TABLE "User" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
+    "image" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "cpf" TEXT NOT NULL,
     "role" TEXT NOT NULL,
@@ -55,10 +56,10 @@ CREATE UNIQUE INDEX "Training_id_key" ON "Training"("id");
 CREATE UNIQUE INDEX "Profile_id_key" ON "Profile"("id");
 
 -- AddForeignKey
-ALTER TABLE "User" ADD CONSTRAINT "User_profilePersonalId_fkey" FOREIGN KEY ("profilePersonalId") REFERENCES "Profile"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "User" ADD CONSTRAINT "User_profilePersonalId_fkey" FOREIGN KEY ("profilePersonalId") REFERENCES "Profile"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "User" ADD CONSTRAINT "User_profileStudentId_fkey" FOREIGN KEY ("profileStudentId") REFERENCES "Profile"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "User" ADD CONSTRAINT "User_profileStudentId_fkey" FOREIGN KEY ("profileStudentId") REFERENCES "Profile"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Training" ADD CONSTRAINT "Training_profileId_fkey" FOREIGN KEY ("profileId") REFERENCES "Profile"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
